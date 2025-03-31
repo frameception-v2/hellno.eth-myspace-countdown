@@ -65,7 +65,12 @@ async function initializeFonts() {
 
     return imageOptions;
   } catch (error) {
-    throw error;
+    console.error("Font initialization error:", error);
+    // Return default options without custom fonts if there's an error
+    return {
+      width: 1200,
+      height: 800,
+    };
   }
 }
 
