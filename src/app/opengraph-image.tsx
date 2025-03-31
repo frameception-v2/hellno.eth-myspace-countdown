@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { PROJECT_TITLE, PROJECT_DESCRIPTION } from "~/lib/constants";
+import { PROJECT_TITLE, PROJECT_DESCRIPTION, EVENT_DATE } from "~/lib/constants";
 import { readFileSync } from "fs";
 import { join } from "path";
 
@@ -69,15 +69,26 @@ async function initializeFonts() {
   }
 }
 
+// Function to format date in a MySpace-style way
+function formatMySpaceDate(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    month: 'long', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short'
+  };
+  return date.toLocaleDateString('en-US', options);
+}
+
 export default async function Image() {
   const options = await initializeFonts();
 
-  const BACKGROUND_GRADIENT_START = "#c026d3";
-  const BACKGROUND_GRADIENT_END = "#ef4444";
-  const BACKGROUND_GRADIENT_STYLE = {
-    backgroundImage: `linear-gradient(to bottom, ${BACKGROUND_GRADIENT_START}, ${BACKGROUND_GRADIENT_END})`,
-    color: "white",
-  };
+  // MySpace-inspired colors
+  const BACKGROUND_COLOR = "#eef5ff";
+  const BORDER_COLOR = "#6699cc";
+  const ACCENT_COLOR = "#ff0066";
 
   /*
 this Image is rendered using vercel/satori.
@@ -91,10 +102,43 @@ Please refer to Satori’s documentation for a list of supported HTML and CSS fe
     (
       <div
         tw="h-full w-full flex flex-col justify-center items-center relative"
-        style={BACKGROUND_GRADIENT_STYLE}
+        style={{
+          backgroundColor: BACKGROUND_COLOR,
+          border: `10px solid ${BORDER_COLOR}`,
+          borderRadius: '20px',
+          padding: '40px',
+        }}
       >
-        <h1 tw="text-9xl text-center font-semibold">{PROJECT_TITLE}</h1>
-        <h3 tw="text-4xl font-normal">{PROJECT_DESCRIPTION}</h3>
+        <div tw="flex flex-col items-center" style={{ 
+          backgroundColor: 'white',
+          border: `5px solid ${ACCENT_COLOR}`,
+          borderRadius: '15px',
+          padding: '30px',
+          boxShadow: '10px 10px 0px rgba(0, 0, 0, 0.2)'
+        }}>
+          <div tw="text-6xl font-bold mb-6" style={{ color: ACCENT_COLOR }}>
+            ✨ {PROJECT_TITLE} ✨
+          </div>
+          
+          <div tw="text-3xl mb-8" style={{ color: '#333' }}>
+            {PROJECT_DESCRIPTION}
+          </div>
+          
+          <div tw="text-2xl mb-4" style={{ color: '#3366cc' }}>
+            Join us on {formatMySpaceDate(EVENT_DATE)}
+          </div>
+          
+          <div tw="flex justify-center mt-6">
+            <div tw="px-6 py-3 text-xl" style={{ 
+              backgroundColor: ACCENT_COLOR,
+              color: 'white',
+              borderRadius: '8px',
+              fontWeight: 'bold'
+            }}>
+              ⭐ Don&apos;t miss it! ⭐
+            </div>
+          </div>
+        </div>
       </div>
     ),
     options

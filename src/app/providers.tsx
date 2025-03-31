@@ -37,10 +37,10 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
   return <PHProvider client={posthog}>{children}</PHProvider>;
 }
 export function Providers({ children }: { children: React.ReactNode }) {
-  const { isSDKLoaded, context } = useFrameSDK();
+  const { isSDKLoaded } = useFrameSDK();
 
   useEffect(() => {
-    if (!context?.user?.fid || !posthog?.isFeatureEnabled) return;
+    // Remove references to context that doesn't exist
 
     const fidId = `fc_${context?.user?.fid}`;
     const currentId = posthog.get_distinct_id();
