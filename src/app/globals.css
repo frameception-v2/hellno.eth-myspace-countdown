@@ -91,3 +91,125 @@ body {
         --sidebar-ring: 217.2 91.2% 59.8%;
     }
 }
+
+/* MySpace-style retro CSS */
+@font-face {
+  font-family: 'Comic Sans MS';
+  src: local('Comic Sans MS');
+}
+
+.myspace-container {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  background: linear-gradient(to bottom, #6699cc, #003366);
+  border: 3px solid #000066;
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.myspace-header {
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px dashed #ffcc00;
+  padding-bottom: 10px;
+}
+
+.myspace-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffcc00;
+  letter-spacing: 1px;
+}
+
+.myspace-subtitle {
+  font-size: 16px;
+  color: #ff99cc;
+  margin-top: 5px;
+}
+
+.myspace-countdown {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ffcc00;
+}
+
+.myspace-time-block {
+  text-align: center;
+  background: linear-gradient(to bottom, #000066, #0000cc);
+  border: 2px solid #ffcc00;
+  border-radius: 5px;
+  padding: 5px;
+  min-width: 50px;
+}
+
+.myspace-time-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.myspace-time-label {
+  font-size: 10px;
+  color: #ff99cc;
+  margin-top: 2px;
+}
+
+.myspace-footer {
+  margin-top: 15px;
+  text-align: center;
+  border-top: 2px dashed #ffcc00;
+  padding-top: 10px;
+}
+
+.myspace-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.myspace-blink {
+  animation: blink 1s step-end infinite;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff99cc;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Add some retro decorative elements */
+.myspace-container::before {
+  content: "★";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: #ffcc00;
+  font-size: 20px;
+}
+
+.myspace-container::after {
+  content: "★";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #ffcc00;
+  font-size: 20px;
+}
